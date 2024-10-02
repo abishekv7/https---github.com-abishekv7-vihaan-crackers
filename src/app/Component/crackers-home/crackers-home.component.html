@@ -49,7 +49,7 @@
             <tr mat-row *matRowDef="let row; columns: ['serialNo', 'name', 'price', 'qty', 'total'];"></tr>
         </table>
 
-        <h3 class="total-right offset-7">Total Price (with 5% packaging): ₹{{ getGrandTotal() | number: '1.2-2' }}</h3>
+        <h1 class="total-right m-4 px-5">Total Price (with 5% packaging): ₹{{ getGrandTotal() | number: '1.2-2' }}</h1>
     </mat-card>
 </div>
 
