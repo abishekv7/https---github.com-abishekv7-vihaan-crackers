@@ -1,5 +1,5 @@
 <div class="container">
-    <mat-card class="pt-0">
+    <mat-card class="pt-0 w-100">
         <div class="header-container">
             <mat-toolbar class="header-toolbar">
                 <img src="weblogo.png" alt="Logo" class="full-width-logo">
@@ -50,89 +50,96 @@
         </table>
 
         <h1 class="total-right m-4 px-5">Total Price (with 5% packaging): ₹{{ getGrandTotal() | number: '1.2-2' }}</h1>
-    </mat-card>
-</div>
 
-<div class="bgorange" id="form_enquiry_pos">
-    <div class="row bgRed text-white">
-        <div class="col-12 ml-3 px-4">
-            <h3> Fill the form and submit enquiry </h3>
+        <div class="bgorange" id="form_enquiry_pos">
+            <div class="row bgRed text-white">
+                <div class="col-12 ml-3 px-4">
+                    <h3> Fill the form and submit enquiry </h3>
+                </div>
+            </div>
+            <div class="px-4 p">
+                <form [formGroup]="personForm" (ngSubmit)="generatePDF()">
+                    <div class="row row-eq-height mt-3 pt-2 pb-2 align-items-center">
+                        <div class="col-12 col-md-4 text-right">
+                            Your Name
+                        </div>
+                        <div class="col-12 col-md-8">
+                            <input pInputText class="form-control" placeholder="Enter Your Name"
+                                formControlName="name" />
+                            <div *ngIf="personForm.get('name')?.touched && personForm.get('name')?.invalid"
+                                class="p-error">
+                                Name is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row pt-2 pb-2 align-items-center">
+                        <div class="col-12 col-md-4 text-right">
+                            Your 10 Digit Mobile No
+                        </div>
+                        <div class="col-12 col-md-8">
+                            <input pInputText class="form-control" placeholder="Enter Your Mobile No"
+                                formControlName="mobile_no" />
+                            <div *ngIf="personForm.get('mobile_no')?.touched && personForm.get('mobile_no')?.invalid"
+                                class="p-error">
+                                A valid 10 digit mobile number is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row pt-2 pb-2 align-items-center">
+                        <div class="col-12 col-md-4 text-right">
+                            Your Address
+                        </div>
+                        <div class="col-12 col-md-8">
+                            <textarea pInputTextarea class="form-control" placeholder="Enter Your Address"
+                                formControlName="address" rows="3"></textarea>
+                            <div *ngIf="personForm.get('address')?.touched && personForm.get('address')?.invalid"
+                                class="p-error">
+                                Address is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row pt-2 pb-2 align-items-center">
+                        <div class="col-12 col-md-4 text-right">
+                            Your State
+                        </div>
+                        <div class="col-12 col-md-8">
+                            <input pInputText class="form-control" placeholder="Enter Your State"
+                                formControlName="state" />
+                            <div *ngIf="personForm.get('state')?.touched && personForm.get('state')?.invalid"
+                                class="p-error">
+                                State is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row pt-2 pb-2 align-items-center">
+                        <div class="col-12 col-md-4 text-right">
+                            Your City
+                        </div>
+                        <div class="col-12 col-md-8">
+                            <input pInputText class="form-control" placeholder="Enter Your City"
+                                formControlName="city" />
+                            <div *ngIf="personForm.get('city')?.touched && personForm.get('city')?.invalid"
+                                class="p-error">
+                                City is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row pt-2 pb-2 align-items-center">
+                        <div class="col-md-4 text-right">
+                        </div>
+                        <div class="col-md-8">
+                            <button pButton type="submit" [disabled]="personForm.invalid && this.getGrandTotal() == 0"
+                                class="btn btn-danger form-control" style="line-height: 40px; height: 50px;">Submit
+                                Enquiry</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-    <div class="px-4 p">
-        <form [formGroup]="personForm" (ngSubmit)="generatePDF()">
-            <div class="row row-eq-height mt-3 pt-2 pb-2 align-items-center">
-                <div class="col-12 col-md-4 text-right">
-                    Your Name
-                </div>
-                <div class="col-12 col-md-8">
-                    <input pInputText class="form-control" placeholder="Enter Your Name" formControlName="name" />
-                    <div *ngIf="personForm.get('name')?.touched && personForm.get('name')?.invalid" class="p-error">
-                        Name is required.
-                    </div>
-                </div>
-            </div>
-
-            <div class="row pt-2 pb-2 align-items-center">
-                <div class="col-12 col-md-4 text-right">
-                    Your 10 Digit Mobile No
-                </div>
-                <div class="col-12 col-md-8">
-                    <input pInputText class="form-control" placeholder="Enter Your Mobile No"
-                        formControlName="mobile_no" />
-                    <div *ngIf="personForm.get('mobile_no')?.touched && personForm.get('mobile_no')?.invalid"
-                        class="p-error">
-                        A valid 10 digit mobile number is required.
-                    </div>
-                </div>
-            </div>
-
-            <div class="row pt-2 pb-2 align-items-center">
-                <div class="col-12 col-md-4 text-right">
-                    Your Address
-                </div>
-                <div class="col-12 col-md-8">
-                    <textarea pInputTextarea class="form-control" placeholder="Enter Your Address"
-                        formControlName="address" rows="3"></textarea>
-                    <div *ngIf="personForm.get('address')?.touched && personForm.get('address')?.invalid"
-                        class="p-error">
-                        Address is required.
-                    </div>
-                </div>
-            </div>
-
-            <div class="row pt-2 pb-2 align-items-center">
-                <div class="col-12 col-md-4 text-right">
-                    Your State
-                </div>
-                <div class="col-12 col-md-8">
-                    <input pInputText class="form-control" placeholder="Enter Your State" formControlName="state" />
-                    <div *ngIf="personForm.get('state')?.touched && personForm.get('state')?.invalid" class="p-error">
-                        State is required.
-                    </div>
-                </div>
-            </div>
-
-            <div class="row pt-2 pb-2 align-items-center">
-                <div class="col-12 col-md-4 text-right">
-                    Your City
-                </div>
-                <div class="col-12 col-md-8">
-                    <input pInputText class="form-control" placeholder="Enter Your City" formControlName="city" />
-                    <div *ngIf="personForm.get('city')?.touched && personForm.get('city')?.invalid" class="p-error">
-                        City is required.
-                    </div>
-                </div>
-            </div>
-
-            <div class="row pt-2 pb-2 align-items-center">
-                <div class="col-md-4 text-right">
-                </div>
-                <div class="col-md-8">
-                    <button pButton type="submit" [disabled]="personForm.invalid && this.getGrandTotal() == 0" class="btn btn-danger form-control"
-                        style="line-height: 40px; height: 50px;">Submit Enquiry</button>
-                </div>
-            </div>
-        </form>
-    </div>
+    </mat-card>
 </div>
