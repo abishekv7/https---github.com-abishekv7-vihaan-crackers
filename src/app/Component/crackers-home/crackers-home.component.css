@@ -150,6 +150,10 @@ mat-card {
     border-radius: 5px;
 }
 
+.tableStyle {
+background-color: aliceblue;
+}
+
 /* Header styles */
 .header-toolbar {
     padding: 0;
