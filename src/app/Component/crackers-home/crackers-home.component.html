@@ -1,0 +1,138 @@
+<div class="container">
+    <mat-card class="pt-0">
+        <div class="header-container">
+            <mat-toolbar class="header-toolbar">
+                <img src="weblogo.png" alt="Logo" class="full-width-logo">
+            </mat-toolbar>
+        </div>
+        <table mat-table [dataSource]="crackers" class="pt-2 tableStyle mat-elevation-z8 table-primary">
+            <ng-container matColumnDef="serialNo">
+                <th mat-header-cell *matHeaderCellDef> S.No </th>
+                <td mat-cell *matCellDef="let cracker; let i = index"> {{ i + 1 }} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let cracker"> {{ cracker.name }} </td>
+            </ng-container>
+
+            <!-- MRP and Price Column -->
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef> Price (₹) </th>
+                <td mat-cell *matCellDef="let cracker">
+                    <span class="mrp">₹{{ cracker.mrp | number: '1.2-2' }}</span>
+                    <span class="price">{{ cracker.price | number: '1.2-2' }}</span>
+                </td>
+            </ng-container>
+
+            <!-- Quantity Column -->
+            <ng-container matColumnDef="qty">
+                <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                <td mat-cell *matCellDef="let cracker">
+                    <div class="card flex flex-wrap gap-3 p-fluid">
+                        <div class="flex-auto">
+                            <p-inputNumber inputId="qty" min="0" [(ngModel)]="cracker.qty"
+                                (ngModelChange)="updateTotal(cracker)" />
+                        </div>
+                    </div>
+                </td>
+            </ng-container>
+
+            <!-- Total Column -->
+            <ng-container matColumnDef="total">
+                <th mat-header-cell *matHeaderCellDef> Total (₹) </th>
+                <td mat-cell *matCellDef="let cracker"> ₹{{ cracker.total | number: '1.2-2' }} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="['serialNo', 'name', 'price', 'qty', 'total']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['serialNo', 'name', 'price', 'qty', 'total'];"></tr>
+        </table>
+
+        <h3 class="total-right offset-7">Total Price (with 5% packaging): ₹{{ getGrandTotal() | number: '1.2-2' }}</h3>
+    </mat-card>
+</div>
+
+<div class="bgorange" id="form_enquiry_pos">
+    <div class="row bgRed text-white">
+        <div class="col-12 ml-3 px-4">
+            <h3> Fill the form and submit enquiry </h3>
+        </div>
+    </div>
+    <div class="px-4 p">
+        <form [formGroup]="personForm" (ngSubmit)="generatePDF()">
+            <div class="row row-eq-height mt-3 pt-2 pb-2 align-items-center">
+                <div class="col-12 col-md-4 text-right">
+                    Your Name
+                </div>
+                <div class="col-12 col-md-8">
+                    <input pInputText class="form-control" placeholder="Enter Your Name" formControlName="name" />
+                    <div *ngIf="personForm.get('name')?.touched && personForm.get('name')?.invalid" class="p-error">
+                        Name is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="row pt-2 pb-2 align-items-center">
+                <div class="col-12 col-md-4 text-right">
+                    Your 10 Digit Mobile No
+                </div>
+                <div class="col-12 col-md-8">
+                    <input pInputText class="form-control" placeholder="Enter Your Mobile No"
+                        formControlName="mobile_no" />
+                    <div *ngIf="personForm.get('mobile_no')?.touched && personForm.get('mobile_no')?.invalid"
+                        class="p-error">
+                        A valid 10 digit mobile number is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="row pt-2 pb-2 align-items-center">
+                <div class="col-12 col-md-4 text-right">
+                    Your Address
+                </div>
+                <div class="col-12 col-md-8">
+                    <textarea pInputTextarea class="form-control" placeholder="Enter Your Address"
+                        formControlName="address" rows="3"></textarea>
+                    <div *ngIf="personForm.get('address')?.touched && personForm.get('address')?.invalid"
+                        class="p-error">
+                        Address is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="row pt-2 pb-2 align-items-center">
+                <div class="col-12 col-md-4 text-right">
+                    Your State
+                </div>
+                <div class="col-12 col-md-8">
+                    <input pInputText class="form-control" placeholder="Enter Your State" formControlName="state" />
+                    <div *ngIf="personForm.get('state')?.touched && personForm.get('state')?.invalid" class="p-error">
+                        State is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="row pt-2 pb-2 align-items-center">
+                <div class="col-12 col-md-4 text-right">
+                    Your City
+                </div>
+                <div class="col-12 col-md-8">
+                    <input pInputText class="form-control" placeholder="Enter Your City" formControlName="city" />
+                    <div *ngIf="personForm.get('city')?.touched && personForm.get('city')?.invalid" class="p-error">
+                        City is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="row pt-2 pb-2 align-items-center">
+                <div class="col-md-4 text-right">
+                </div>
+                <div class="col-md-8">
+                    <button pButton type="submit" [disabled]="personForm.invalid && this.getGrandTotal() == 0" class="btn btn-danger form-control"
+                        style="line-height: 40px; height: 50px;">Submit Enquiry</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

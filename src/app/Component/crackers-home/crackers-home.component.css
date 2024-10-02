@@ -1,0 +1,192 @@
+.container {
+    display: contents;
+    justify-content: center;
+    margin: 20px;
+    background-color: aliceblue;
+  }
+  
+
+
+  .mat-elevation-z8 {
+    width: 100%;
+  }
+  
+  .mrp {
+    text-decoration: line-through;
+    color: red;
+    margin-right: 10px;
+  }
+  
+  .price {
+    color: green;
+  }
+  
+  mat-card {
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  .p-field {
+    margin-bottom: 1rem;
+  }
+  
+  .p-error {
+    color: red;
+    font-size: 0.8rem;
+  }
+
+  .parentContainer {
+    margin: 20px;
+}
+
+.table-primary {
+    width: 100%; /* Make the table take full width */
+    overflow-x: auto; /* Allow horizontal scrolling on small screens */
+}
+
+.mat-card {
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        align-items: flex-start; /* Align items to the left */
+    }
+
+    .col-4, .col-8 {
+        text-align: left; /* Align text to the left for better readability */
+        width: 100%; /* Make input fields take full width */
+    }
+
+    h2, h3 {
+        font-size: 1.5rem; /* Reduce font size of headings */
+    }
+
+    .btn-danger {
+        width: 100%; /* Full-width button */
+    }
+}
+
+.mat-elevation-z8 {
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.table-custom {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table-custom th, .table-custom td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table-custom th {
+    background-color: #f8f9fa;
+    color: #000;
+}
+
+.table-custom td {
+    background-color: #fff;
+}
+
+.mrp {
+    text-decoration: line-through;
+    color: grey;
+}
+
+.price {
+    color: green;
+    font-weight: bold;
+}
+
+/* Optional: Custom background for the card */
+.card-primary {
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .table-custom th, .table-custom td {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+}
+
+.total-right {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.tableStyle {
+    background-color: aliceblue;
+}
+
+.bgorange {
+    background-color: orange;
+}
+  
+.bgred {
+    background-color: red;
+}
+
+.headerCard {
+    background-color: burlywood;
+}
+
+.image-container {
+    flex-shrink: 0; /* Prevent image from shrinking */
+    margin-left: 20px;
+}
+
+.image-container {/* Prevent image from shrinking */
+    margin-left: 20px;
+}
+
+.right-image {
+    width: 150px; /* Fixed width */
+    height: 150px; /* Fixed height */
+    object-fit: cover; /* To ensure the image fits properly */
+    border-radius: 8px;
+}
+
+.right-image1 {
+    width: 500px; /* Fixed width */
+    height: 150px; /* Fixed height */
+    border-radius: 5px;
+}
+.header-container {
+    width: 100%;
+}
+
+.header-toolbar {
+    padding: 0;
+    height: auto;
+    background-color: transparent; /* Remove background color if needed */
+    justify-content: center; /* Center the logo */
+}
+
+/* Full width logo */
+.full-width-logo {
+    width: 100%; /* Stretch the logo to full width */
+    height: 400px; /* Maintain aspect ratio */
+    object-fit: cover; /* Make sure it covers the full width without stretching */
+}
+
+@media (max-width: 768px) {
+    /* Adjust for smaller screens */
+    .full-width-logo {
+        width: 100%; /* Still maintain full width on mobile */
+    }
+}
