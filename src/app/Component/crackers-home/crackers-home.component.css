@@ -125,7 +125,8 @@ mat-card {
     }
 
     .total-right {
-        text-align: right;
+        text-align: center;
+        font-size: medium;
     }
 
     .full-width-logo {
