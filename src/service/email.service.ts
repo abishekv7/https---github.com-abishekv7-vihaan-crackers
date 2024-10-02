@@ -6,7 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class EmailService {
-  private apiUrl = 'http://localhost:8080/api/email/send';
+  // private apiUrl = 'http://localhost:4500/api/email/send';
+  private apiUrl = 'https://vihaancrackersbackend-50022550740.development.catalystappsail.in/api/email/send';
+
 
   constructor(private http: HttpClient) {}
 

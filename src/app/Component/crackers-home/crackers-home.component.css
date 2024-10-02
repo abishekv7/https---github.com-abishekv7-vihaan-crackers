@@ -131,6 +131,10 @@ mat-card {
     }
 }
 
+.total-right {
+    text-align: right;
+}
+
 /* Image container styles */
 .image-container {
     flex-shrink: 0; /* Prevent image from shrinking */
