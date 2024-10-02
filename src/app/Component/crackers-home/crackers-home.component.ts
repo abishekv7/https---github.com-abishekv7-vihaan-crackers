@@ -255,7 +255,7 @@ export class CrackersHomeComponent {
         theme: 'grid'
       });
   
-      const headers = [['S.No', 'Name', 'MRP', 'Price', 'qty', 'Total (₹)']];
+      const headers = [['S.No', 'Name', 'MRP', 'Price', 'qty', 'Total']];
       
       // Crackers Data
       const data = this.crackers
@@ -278,18 +278,30 @@ export class CrackersHomeComponent {
   
       // Grand Total
       const grandTotal = this.getGrandTotal();
-      pdf.text(`Grand Total: ₹${grandTotal}`, 14, pdf.lastAutoTable.finalY + 10);
+      pdf.text(`Grand Total: Rs.${grandTotal}`, 14, pdf.lastAutoTable.finalY + 10);
       
       // Save the PDF
       pdf.save( formData.name + '_cracker-price-list.pdf');
-      // this.emailService.sendEmail(this.personForm.value).subscribe(
-      //   response => {
-      //     console.log('Email sent successfully!', response);
-      //   },
-      //   error => {
-      //     console.error('Error sending email', error);
-      //   }
-      // );
+      const pdfBlob = pdf.output('blob');
+
+    // Create FormData to send to the backend
+    const mailFormData = new FormData();
+    const now = new Date();
+    mailFormData.append('toEmail', "abishekv178@gmail.com");
+    mailFormData.append('subject', "New Order Received " + now.toLocaleString() );
+    mailFormData.append('body', "Order Received from " + formData.name + "_" + formData.mobile_no);
+    mailFormData.append('file', new Blob([pdfBlob], { type: 'application/pdf' }), formData.name + '_cracker-price-list.pdf');
+
+    // Send the PDF file to the backend
+    this.emailService.sendEmail(mailFormData).subscribe(
+      (response) => {
+        console.log('Email sent successfully with PDF attachment', response);
+      },
+      (error) => {
+        console.error('Error sending email', error);
+      }
+    );
+    this.personForm.reset()
     } else {
       // If the form isn't valid, show errors!
       this.personForm.markAllAsTouched();

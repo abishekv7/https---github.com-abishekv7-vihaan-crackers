@@ -1,17 +1,16 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmailService {
+  private apiUrl = 'http://localhost:8080/api/email/send';
 
-  private apiUrl = 'http://localhost:3000/send-email';  // Replace with your backend API URL
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  sendEmail(data: any): Observable<any> {
-    return this.http.post(this.apiUrl, data);
+  sendEmail(formData: FormData): Observable<any> {
+    return this.http.post(this.apiUrl, formData);
   }
 }

@@ -173,10 +173,10 @@ background-color: aliceblue;
 
 /* Full width logo */
 .full-width-logo {
-    width: 100%; /* Full width */
-    height: auto; /* Auto height to maintain aspect ratio */
-    max-height: 200px; /* Set a maximum height */
-    object-fit: contain; /* Ensure the entire image fits within the container */
+    width: 100%; /* Stretch the logo to full width */
+    height: 400px; /* Maintain aspect ratio */
+    object-fit: cover; /* Make sure it covers the full width without stretching */
+    overflow-x: scroll;
 }
 
 /* Optional: Custom backgrounds */
